@@ -1,20 +1,17 @@
 (function () {
 'use strict';
 
-angular.module('LunchCheck', [])
+angular.module('LunchCheck', []).controller('LunchCheckController', LunchCheckController);
+LunchCheckController.$inject=['$scope']
+ function LunchCheckController($scope) {
+    $scope.foodList ='';
+    $scope.message = '';
 
-.controller('LunchCheckController', function ($scope) {
-  $scope.foodList ='';
-  $scope.message = '';
-
-  $scope.checkIfTooMuch = function(){
-    var food =  $scope.foodList.split(',');
-    console.log(food.length);
-
-
-    if(food == ''){
-      $scope.message="Please enter data first";
-    }else{
+    $scope.checkIfTooMuch = function() {
+      var food =  $scope.foodList.split(',');
+      if(food == ''){
+        $scope.message="Please enter data first";
+      }else{
         if(!validateFoodList(food)){
           $scope.message="We do NOT consider and empty item";
         }else if (food.length <= 3) {
@@ -22,17 +19,18 @@ angular.module('LunchCheck', [])
         }else {
           $scope.message="Too much!";
         }
-    }
-  }
+      }
+   };
+ }
 
-  function validateFoodList(foodArray){
+ function validateFoodList(foodArray){
     for (var i = 0; i < foodArray.length; i++) {
       if (foodArray[i] == '') {
         return false;
       }
     }
     return true;
-  }
-});
+ }
+
 
 })();
