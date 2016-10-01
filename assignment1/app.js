@@ -16,7 +16,7 @@ angular.module('LunchCheck', [])
       $scope.message="Please enter data first";
     }else{
         if(!validateFoodList(food)){
-          $scope.message="you do NOT consider and empty item";
+          $scope.message="We do NOT consider and empty item";
         }else if (food.length <= 3) {
           $scope.message="Enjoy!";
         }else {
